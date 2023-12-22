@@ -1,95 +1,83 @@
-import Image from 'next/image'
+'use client'
+
+import React, { useState } from 'react';
 import styles from './page.module.css'
+import { Canvas } from '@react-three/fiber'
+import Iphone from './components/Iphone';
+import { CustomizationProvider } from './contexts/Customization';
+import Experience from './components/Experience';
+import Configurator from './components/Configurator';
+import { ResponsiveProvider, useResponsive } from './contexts/Responsive3D';
 
 export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+
+  interface PopupProps {
+    isOpen: boolean;
+    children: React.ReactNode;
+  }
+
+  const Popup = ({ isOpen, children }: PopupProps) => {
+    return isOpen ? (
+      <div id={styles.popupoverlay}>
+        <div id={styles.popup}>
+          {children}
         </div>
       </div>
+    ) : null;
+  };
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+  const [isPopupOpen, setPopupOpen] = useState(false);
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+  const openPopup = () => {
+    setPopupOpen(true);
+  };
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+  const closePopup = () => {
+    setPopupOpen(false);
+  }
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+  return (
+    <ResponsiveProvider>
+    <CustomizationProvider>
+    <main className={styles.main}>
+      <section id={styles.herosection}>
+        <h1>iPhone 15 Pro</h1>
+      </section>
+      <section id={styles.canvas}>
+        <Canvas>
+          <Iphone/>
+          <directionalLight position={[0, 0, -1]} intensity={2}/>
+          <directionalLight position={[-5, 0, -1]} intensity={2}/>
+          <directionalLight position={[5, 0, -1]} intensity={2}/>
+          <directionalLight position={[0, 5, -1]} intensity={2}/>
+          <directionalLight position={[0, -5, -1]} intensity={2}/>
+          <ambientLight intensity={1}/>
+        </Canvas>
+      </section>
+      <button id={styles.customizationbutton} onClick={openPopup}>
+        <svg height="50px" id="Layer_1" version="1.1" viewBox="0 0 50 50" width="50px" xmlns="http://www.w3.org/2000/svg"><path d="M8,14L4,49h42l-4-35H8z" fill="none" stroke="#000000"/><rect fill="none" height="50" width="50"/><path d="M34,19c0-1.241,0-6.759,0-8  c0-4.971-4.029-9-9-9s-9,4.029-9,9c0,1.241,0,6.759,0,8" fill="none" stroke="#000000" /><circle cx="34" cy="19" r="2"/><circle cx="16" cy="19" r="2"/></svg>
+      </button>
+      <Popup isOpen={isPopupOpen}>
+          <Canvas>
+            <Experience/>
+            <directionalLight position={[0, 0, -1]} intensity={2}/>
+            <directionalLight position={[-5, 0, -1]} intensity={2}/>
+            <directionalLight position={[5, 0, -1]} intensity={2}/>
+            <directionalLight position={[0, 5, -1]} intensity={2}/>
+            <directionalLight position={[0, -5, -1]} intensity={2}/>
+            <ambientLight intensity={5}/>
+          </Canvas>
+          <div id={styles.configuratorsettings}>
+            <span id={styles.closebutton} onClick={closePopup}>
+                <p id={styles.closelabel}>Retour à la page d&apos;accueil</p>
+                <p id={styles.closecross}>&times;</p>
+            </span>
+            <h3 id={styles.configuratortitle}>Personnalisez votre iPhone</h3>
+            <Configurator/>
+          </div>
+      </Popup>
     </main>
+    </CustomizationProvider>
+    </ResponsiveProvider>
   )
 }
