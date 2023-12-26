@@ -15,6 +15,13 @@ export default function Home() {
     height: typeof window !== 'undefined' && window.innerHeight
   }
 
+  const getPopupStyle = () => {
+    if (popupResponsiveHeight.height !== false) {
+      return { height: popupResponsiveHeight.height };
+    }
+    return {}; // Retourne un objet vide si la hauteur est false
+  };
+
   interface PopupProps {
     isOpen: boolean;
     children: React.ReactNode;
@@ -24,12 +31,6 @@ export default function Home() {
   }  
 
   const Popup = ({ isOpen, children, popupResponsiveHeight }: PopupProps) => {
-    const getPopupStyle = () => {
-      if (popupResponsiveHeight.height !== false) {
-        return { height: popupResponsiveHeight.height };
-      }
-      return {}; // Retourne un objet vide si la hauteur est false
-    };
   
     return isOpen ? (
       <div id={styles.popupoverlay} style={getPopupStyle()}>
@@ -55,7 +56,7 @@ export default function Home() {
     <ResponsiveProvider>
     <CustomizationProvider>
     <main className={styles.main}>
-      <section id={styles.herosection}>
+      <section id={styles.herosection} style={getPopupStyle()}>
         <h1>iPhone 15 Pro</h1>
       </section>
       <section id={styles.canvas}>
