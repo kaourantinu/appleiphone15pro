@@ -11,20 +11,35 @@ import { ResponsiveProvider, useResponsive } from './contexts/Responsive3D';
 
 export default function Home() {
 
+  const popupResponsiveHeight = {
+    height: typeof window !== 'undefined' && window.innerHeight
+  }
+
   interface PopupProps {
     isOpen: boolean;
     children: React.ReactNode;
-  }
+    popupResponsiveHeight: {
+      height: number | false;
+    };
+  }  
 
-  const Popup = ({ isOpen, children }: PopupProps) => {
+  const Popup = ({ isOpen, children, popupResponsiveHeight }: PopupProps) => {
+    const getPopupStyle = () => {
+      if (popupResponsiveHeight.height !== false) {
+        return { height: popupResponsiveHeight.height };
+      }
+      return {}; // Retourne un objet vide si la hauteur est false
+    };
+  
     return isOpen ? (
-      <div id={styles.popupoverlay}>
+      <div id={styles.popupoverlay} style={getPopupStyle()}>
         <div id={styles.popup}>
           {children}
         </div>
       </div>
     ) : null;
   };
+  
 
   const [isPopupOpen, setPopupOpen] = useState(false);
 
@@ -35,7 +50,7 @@ export default function Home() {
   const closePopup = () => {
     setPopupOpen(false);
   }
-
+  
   return (
     <ResponsiveProvider>
     <CustomizationProvider>
@@ -57,7 +72,7 @@ export default function Home() {
       <button id={styles.customizationbutton} onClick={openPopup}>
         <svg height="50px" id="Layer_1" version="1.1" viewBox="0 0 50 50" width="50px" xmlns="http://www.w3.org/2000/svg"><path d="M8,14L4,49h42l-4-35H8z" fill="none" stroke="#ffffff"/><rect fill="none" height="50" width="50"/><path d="M34,19c0-1.241,0-6.759,0-8  c0-4.971-4.029-9-9-9s-9,4.029-9,9c0,1.241,0,6.759,0,8" fill="none" stroke="#ffffff" /><circle cx="34" cy="19" r="2"/><circle cx="16" cy="19" r="2"/></svg>
       </button>
-      <Popup isOpen={isPopupOpen}>
+      <Popup isOpen={isPopupOpen} popupResponsiveHeight={popupResponsiveHeight}>
           <Canvas>
             <Experience/>
             <directionalLight position={[0, 0, -1]} intensity={2}/>

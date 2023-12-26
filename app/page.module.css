@@ -54,7 +54,6 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100vh;
   background-color: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
 }
@@ -106,10 +105,11 @@
 }
 
 @media screen and (max-width: 767px){
+
   #popup{
     align-items: center;
     flex-direction: column;
-    height: auto;
+    height: 100%;
     width: 100%;
     max-width: 100%;
     border-radius: 0px;

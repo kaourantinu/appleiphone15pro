@@ -3,10 +3,12 @@ import { createContext, useContext, ReactNode } from "react";
 interface ResponsiveContextProps {
   isMobile: boolean;
   isTablet: boolean;
+  ViewportHeight : number | false  ;
 }
 
 const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 const isTablet = typeof window !== 'undefined' && window.innerWidth >= 768 && window.innerWidth <= 1024;
+const ViewportHeight = typeof window !== 'undefined' && window.innerHeight
 
 const ResponsiveContext = createContext<ResponsiveContextProps | undefined>(undefined);
 
@@ -15,7 +17,8 @@ export const ResponsiveProvider: React.FC<{ children: ReactNode }> = (props) => 
     <ResponsiveContext.Provider
       value={{
         isMobile,
-        isTablet
+        isTablet,
+        ViewportHeight
       }}
     >
       {props.children}
