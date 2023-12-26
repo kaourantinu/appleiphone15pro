@@ -1,6 +1,6 @@
 #canvas{
   width: 100%;
-  height: 100vh;
+  height: var(--fullheight);
   position: fixed;
   top: 0;
   left: 0;
@@ -8,6 +8,7 @@
 
 #herosection{
   width: 100%;
+  height: var(--fullheight);
   background-color: black;
   display: flex;
   flex-direction: column;
@@ -46,6 +47,7 @@
 }
 
 #popupoverlay{
+  height: var(--fullheight);
   position: absolute;
   top: 0;
   left: 0;
@@ -108,7 +110,7 @@
   #popup{
     align-items: center;
     flex-direction: column;
-    height: 100%;
+    height: var(--fullheight);
     width: 100%;
     max-width: 100%;
     border-radius: 0px;
@@ -134,7 +136,7 @@
   #popup{
     align-items: center;
     flex-direction: column;
-    height: 100%;
+    height: var(--fullheight);
     width: 100%;
     max-width: 100%;
     border-radius: 0px;
