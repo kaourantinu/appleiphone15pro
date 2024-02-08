@@ -101,6 +101,4 @@ function Iphone(props: JSX.IntrinsicElements["group"]) {
   );
 }
 
-useGLTF.preload("./models/iphone.glb");
-
 export default Iphone;

@@ -8,8 +8,8 @@ import { ResponsiveProvider } from "../contexts/Responsive3D";
   const Experience = () => {
     return (
       <ResponsiveProvider>
-        <OrbitControls autoRotate={true}/>
-        <IphoneCustomization/>
+        <OrbitControls minPolarAngle={Math.PI / 2} maxPolarAngle={Math.PI / 2} autoRotate={true}/>
+        <IphoneCustomization rotation={[0, 0, 0]}/>
       </ResponsiveProvider>
     );
   };

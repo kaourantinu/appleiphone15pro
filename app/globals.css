@@ -26,6 +26,20 @@ header{
   justify-content: space-between;
   align-items: center;
   padding-top: 4vh;
+  opacity: 0;
+  transform: translateY(-10vh);
+  animation: slidedown 2s ease 0.5s forwards;
+}
+
+@keyframes slidedown {
+  0% {
+    opacity: 0; /* Opacité de 0 */
+    transform: translateY(-10vh);
+  }
+  100% {
+    opacity: 1; /* Opacité de 1 */
+    transform: translateY(0vh);
+  }
 }
 
 header svg{

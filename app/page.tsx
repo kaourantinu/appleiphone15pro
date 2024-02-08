@@ -1,13 +1,14 @@
 'use client'
 
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { Suspense, useLayoutEffect, useState } from 'react';
 import styles from './page.module.css'
 import { Canvas } from '@react-three/fiber'
 import Iphone from './components/Iphone';
 import { CustomizationProvider } from './contexts/Customization';
 import Experience from './components/Experience';
 import Configurator from './components/Configurator';
-import { ResponsiveProvider, useResponsive } from './contexts/Responsive3D';
+import { ResponsiveProvider } from './contexts/Responsive3D';
+import Link from 'next/link';
 
 export default function Home() {
 
@@ -20,6 +21,10 @@ export default function Home() {
 
     document.documentElement.style.setProperty('--fullheight', `${popupResponsiveHeight2.height}px`);
   })
+
+  const containerStyles = {
+    backgroundColor: 'red',
+  }
 
   interface PopupProps {
     isOpen: boolean;
@@ -56,7 +61,7 @@ export default function Home() {
       </section>
       <section id={styles.canvas}>
         <Canvas>
-          <Iphone/>
+            <Iphone/>
           <directionalLight position={[0, 0, -1]} intensity={2}/>
           <directionalLight position={[-5, 0, -1]} intensity={2}/>
           <directionalLight position={[5, 0, -1]} intensity={2}/>
@@ -69,7 +74,7 @@ export default function Home() {
         <svg height="50px" id="Layer_1" version="1.1" viewBox="0 0 50 50" width="50px" xmlns="http://www.w3.org/2000/svg"><path d="M8,14L4,49h42l-4-35H8z" fill="none" stroke="#ffffff"/><rect fill="none" height="50" width="50"/><path d="M34,19c0-1.241,0-6.759,0-8  c0-4.971-4.029-9-9-9s-9,4.029-9,9c0,1.241,0,6.759,0,8" fill="none" stroke="#ffffff" /><circle cx="34" cy="19" r="2"/><circle cx="16" cy="19" r="2"/></svg>
       </button>
       <Popup isOpen={isPopupOpen}>
-          <Canvas>
+          <Canvas id={styles.iphonecustom}>
             <Experience/>
             <directionalLight position={[0, 0, -1]} intensity={2}/>
             <directionalLight position={[-5, 0, -1]} intensity={2}/>
@@ -80,7 +85,6 @@ export default function Home() {
           </Canvas>
           <div id={styles.configuratorsettings}>
             <span id={styles.closebutton} onClick={closePopup}>
-                <p id={styles.closelabel}>Retour à la page d&apos;accueil</p>
                 <p id={styles.closecross}>&times;</p>
             </span>
             <h3 id={styles.configuratortitle}>Personnalisez votre iPhone</h3>
