@@ -72,6 +72,12 @@
   width: 50%;
 }
 
+.loader{
+  background-color: white;
+  width: 100vw;
+  height: 100vh;
+}
+
 @keyframes slideright {
   0% {
     opacity: 0; /* Opacité de 0 */

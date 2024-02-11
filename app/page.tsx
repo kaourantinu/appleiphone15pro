@@ -61,7 +61,9 @@ export default function Home() {
       </section>
       <section id={styles.canvas}>
         <Canvas>
+          <Suspense fallback={<div className={styles.loader}>couououcsh</div>}>
             <Iphone/>
+          </Suspense>
           <directionalLight position={[0, 0, -1]} intensity={2}/>
           <directionalLight position={[-5, 0, -1]} intensity={2}/>
           <directionalLight position={[5, 0, -1]} intensity={2}/>
@@ -75,13 +77,13 @@ export default function Home() {
       </button>
       <Popup isOpen={isPopupOpen}>
           <Canvas id={styles.iphonecustom}>
-            <Experience/>
-            <directionalLight position={[0, 0, -1]} intensity={2}/>
-            <directionalLight position={[-5, 0, -1]} intensity={2}/>
-            <directionalLight position={[5, 0, -1]} intensity={2}/>
-            <directionalLight position={[0, 5, -1]} intensity={2}/>
-            <directionalLight position={[0, -5, -1]} intensity={2}/>
-            <ambientLight intensity={5}/>
+              <Experience/>
+              <directionalLight position={[0, 0, -1]} intensity={2}/>
+              <directionalLight position={[-5, 0, -1]} intensity={2}/>
+              <directionalLight position={[5, 0, -1]} intensity={2}/>
+              <directionalLight position={[0, 5, -1]} intensity={2}/>
+              <directionalLight position={[0, -5, -1]} intensity={2}/>
+              <ambientLight intensity={5}/>         
           </Canvas>
           <div id={styles.configuratorsettings}>
             <span id={styles.closebutton} onClick={closePopup}>
