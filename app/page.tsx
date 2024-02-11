@@ -9,6 +9,7 @@ import Experience from './components/Experience';
 import Configurator from './components/Configurator';
 import { ResponsiveProvider } from './contexts/Responsive3D';
 import Link from 'next/link';
+import { Loader } from '@react-three/drei';
 
 export default function Home() {
 
@@ -61,7 +62,7 @@ export default function Home() {
       </section>
       <section id={styles.canvas}>
         <Canvas>
-          <Suspense fallback={<div className={styles.loader}>couououcsh</div>}>
+          <Suspense fallback={null}>
             <Iphone/>
           </Suspense>
           <directionalLight position={[0, 0, -1]} intensity={2}/>
@@ -70,6 +71,7 @@ export default function Home() {
           <directionalLight position={[0, 5, -1]} intensity={2}/>
           <directionalLight position={[0, -5, -1]} intensity={2}/>
           <ambientLight intensity={1}/>
+          <Loader containerStyles={containerStyles}/>
         </Canvas>
       </section>
       <button id={styles.customizationbutton} onClick={openPopup}>
