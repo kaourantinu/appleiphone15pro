@@ -74,9 +74,12 @@
 
 #loader{
   color: white;
-  background-color: transparent;
+  background-color: black;
   width: 100vw;
   height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @keyframes slideright {
