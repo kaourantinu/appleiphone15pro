@@ -9,8 +9,7 @@ import Experience from './components/Experience';
 import Configurator from './components/Configurator';
 import { ResponsiveProvider } from './contexts/Responsive3D';
 import Link from 'next/link';
-import { Loader } from '@react-three/drei';
-import { Porsche } from './components/porsche';
+import Loader from './components/Loader';
 
 export default function Home() {
 
