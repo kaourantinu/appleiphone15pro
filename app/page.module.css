@@ -72,8 +72,9 @@
   width: 50%;
 }
 
-.loader{
-  background-color: white;
+#loader{
+  color: white;
+  background-color: transparent;
   width: 100vw;
   height: 100vh;
 }

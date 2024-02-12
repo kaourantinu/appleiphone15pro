@@ -62,9 +62,8 @@ export default function Home() {
           <h1>iPhone 15 Pro</h1>
       </section>
       <section id={styles.canvas}>
-      <Suspense fallback={<Loader containerStyles={containerStyles}/>}>
         <Canvas>
-          <Porsche/>
+          <Iphone/>
           <directionalLight position={[0, 0, -1]} intensity={2}/>
           <directionalLight position={[-5, 0, -1]} intensity={2}/>
           <directionalLight position={[5, 0, -1]} intensity={2}/>
@@ -72,7 +71,6 @@ export default function Home() {
           <directionalLight position={[0, -5, -1]} intensity={2}/>
           <ambientLight intensity={1}/>
         </Canvas>
-      </Suspense>
       </section>
       <button id={styles.customizationbutton} onClick={openPopup}>
         <svg height="50px" id="Layer_1" version="1.1" viewBox="0 0 50 50" width="50px" xmlns="http://www.w3.org/2000/svg"><path d="M8,14L4,49h42l-4-35H8z" fill="none" stroke="#ffffff"/><rect fill="none" height="50" width="50"/><path d="M34,19c0-1.241,0-6.759,0-8  c0-4.971-4.029-9-9-9s-9,4.029-9,9c0,1.241,0,6.759,0,8" fill="none" stroke="#ffffff" /><circle cx="34" cy="19" r="2"/><circle cx="16" cy="19" r="2"/></svg>
