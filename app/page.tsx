@@ -1,6 +1,6 @@
 'use client'
 
-import React, { Suspense, useLayoutEffect, useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import styles from './page.module.css'
 import { Canvas } from '@react-three/fiber'
 import Iphone from './components/Iphone';
@@ -8,8 +8,6 @@ import { CustomizationProvider } from './contexts/Customization';
 import Experience from './components/Experience';
 import Configurator from './components/Configurator';
 import { ResponsiveProvider } from './contexts/Responsive3D';
-import Link from 'next/link';
-import Loader from './components/Loader';
 
 export default function Home() {
 
@@ -22,10 +20,6 @@ export default function Home() {
 
     document.documentElement.style.setProperty('--fullheight', `${popupResponsiveHeight2.height}px`);
   })
-
-  const containerStyles = {
-    backgroundColor: 'red',
-  }
 
   interface PopupProps {
     isOpen: boolean;

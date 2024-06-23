@@ -1,6 +1,6 @@
 import * as THREE from "three";
-import React, { useRef } from "react";
-import { useGLTF, useTexture } from "@react-three/drei";
+import React from "react";
+import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import { useCustomization } from "../contexts/Customization";
 import { useResponsive } from "../contexts/Responsive3D";
